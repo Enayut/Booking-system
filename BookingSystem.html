@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking System</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    *{
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+    }
+    .nav{
+        display: flex;
+        flex-direction: row;
+        background-color: rgb(33, 42, 33);
+        align-items: center;
+    }
+    .logo{
+        height: 3em;
+        width: 3em;
+        padding: 0.5em 1em;
+    }
+    .title{
+        color: white;
+    }
+    #theatre{
+        display: grid;
+        grid-template-columns: repeat(13, 4em); /* 13 columns with specific widths */
+        grid-template-rows: repeat(12, 1fr); /* 12 rows with equal height */
+        gap: 5px; 
+        justify-items: center;
+    }
+    .sub{
+        margin: 2em;
+        font-size: 18px;
+    }
+    .seat{
+        height: 1em;
+        width: 1em;
+        background-color: aquamarine;
+        padding: 10px;
+        font-size: 0.65em;
+        
+    }
+    .bseat{
+        height: 1em;
+        width: 1em;
+        background-color: rgb(129, 133, 131);
+        padding: 10px;
+        font-size: 0.65em;
+    }
+    .cont{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #screen{
+        height: 2em;
+        width: 40em;
+        margin-top: 40px;
+    }
+</style>
+
+<body>
+    <header>
+        <div class="nav">
+            <img src="logo.png" class="logo">
+            <h2 class="title">Movie Mania</h2>
+        </div>
+        <div class="sub">
+            Book Your Seat
+        </div>
+    </header>
+    <div class="cont">
+        <div id="theatre">
+        
+        </div>
+        <img src="screen.png" id="screen">
+    </div>
+    
+</body>
+<script>
+    let createSeat = () => {
+        let a = document.getElementById("theatre").innerHTML;
+        let j = 1;
+        for (let i = 1; i < 157; i++) {
+            let flag = ((i - 3) % 13 === 0) || ((i - 11) % 13 === 0);
+            if (!flag) {
+                a += `<div class="seat"><p>${133-j}</p></div>`;
+                j++;
+            }
+            else{
+                a += `<div></div>`;
+            }
+        }
+        document.getElementById("theatre").innerHTML = a; // Update the theatre element with the new content
+    }
+    
+    createSeat();
+
+    
+     var a = document.querySelectorAll('.seat');
+    a.forEach(function (element){
+        element.addEventListener('click',function (){
+            element.classList.toggle('bseat');
+            console.log('Clicked:', element.textContent);
+        })
+    })
+    
+
+    
+</script>
+</html>
